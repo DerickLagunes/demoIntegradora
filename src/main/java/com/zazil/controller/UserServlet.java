@@ -20,21 +20,21 @@ public class UserServlet extends HttpServlet {
         String pass  = req.getParameter("pass");
 
         UserDao dao = new UserDao();
-        List<User> lista = dao.findAll();
 
-        for (User user : lista) {
-            if (user.getEmail().equals(email)
-                    && user.getPass().equals(pass)){
-                req.getSession().setAttribute("login",user);
-                if(user.getEmail().equals("admin")){
-                    req.getSession().setAttribute("tipo","admin");
-                }else{
-                    req.getSession().setAttribute("tipo","comprador");
-                }
-                resp.sendRedirect("bienvenida.jsp");
+        User usr = (User) dao.login(email, pass);
+
+        if (usr.getId()!=0){
+            req.getSession().setAttribute("login",usr);
+
+            if(usr.getEmail().equals("admin")){
+                req.getSession().setAttribute("tipo","admin");
+            }else{
+                req.getSession().setAttribute("tipo","comprador");
             }
         }
-        resp.sendRedirect("index.jsp?retry=true");
+
+
+        resp.sendRedirect("index.jsp");
 
     }
 }

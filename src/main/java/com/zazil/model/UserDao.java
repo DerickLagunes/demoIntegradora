@@ -37,6 +37,26 @@ public class UserDao implements DaoRepository {
         return null;
     }
 
+    public Object login(String user, String pass) {
+        User usr = new User();
+        MysqlConector conn = new MysqlConector();
+        Connection con = conn.connect();
+        try {
+            PreparedStatement stmt = con.prepareStatement("select * from users where email = ? AND pass = sha2(?,224)");
+            stmt.setString(1,user);
+            stmt.setString(2,pass);
+            ResultSet res = stmt.executeQuery();
+            while(res.next()){
+                usr.setId(res.getInt("id"));
+                usr.setEmail(res.getString("email"));
+                usr.setPass(res.getString("pass"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return usr;
+    }
+
     @Override
     public boolean update(int id, Object object) {
         return false;
