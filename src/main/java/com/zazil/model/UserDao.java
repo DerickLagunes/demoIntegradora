@@ -69,4 +69,46 @@ public class UserDao implements DaoRepository {
 
         return false;
     }
+
+    public boolean insert(User usr){
+        MysqlConector connection = new MysqlConector();
+        Connection con = connection.connect();
+        try {
+            PreparedStatement stmt = con.prepareStatement(
+                    "insert into users(email, pass, codigo) " +
+                            "values(?,sha2(?,224),sha2(?,224))"
+            );
+            stmt.setString(1,usr.getEmail());
+            stmt.setString(2,usr.getPass());
+            stmt.setString(3,usr.getCodigo());
+            if(stmt.executeUpdate() > 0){
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
+    public Object findOne(String correo) {
+        User usr = new User();
+        MysqlConector conector = new MysqlConector();
+        Connection con = conector.connect();
+        try {
+            PreparedStatement stmt =
+                    con.prepareStatement("select * from users " +
+                            "where email = ?");
+            stmt.setString(1,correo);
+            ResultSet res = stmt.executeQuery();
+            if(res.next()){
+                usr.setId(res.getInt("id"));
+                usr.setEmail(res.getString("email"));
+                usr.setPass(res.getString("pass"));
+                usr.setCodigo(res.getString("codigo"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return usr;
+    }
 }

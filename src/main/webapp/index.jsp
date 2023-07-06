@@ -31,6 +31,8 @@
                     <label for="inputPassword" class="sr-only">Contraseña:</label>
                     <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required="" name="pass">
                     <br/>
+                    <a href="recuperacion.jsp">¿Ha olvidado su contraseña?</a>
+                    <br/><br/>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesión</button>
                     <a class="btn btn-lg btn-primary btn-block" href="registro.jsp">Registrarse</a>
                 </form>

@@ -4,6 +4,7 @@ public class User {
     private int id;
     private String email;
     private String pass; //Esta esta encriptada usando el algoritmo sha2 de mysql
+    private String codigo;
     private String nombre1;
     private String nombre2;
     private String apellido1;
@@ -12,10 +13,11 @@ public class User {
     public User() {
     }
 
-    public User(int id, String email, String pass) {
+    public User(int id, String email, String pass, String codigo) {
         this.id = id;
         this.email = email;
         this.pass = pass;
+        this.codigo = codigo;
     }
 
     public User(int id, String email, String pass, String nombre1, String nombre2, String apellido1, String apellido2) {
@@ -82,5 +84,13 @@ public class User {
 
     public void setApellido2(String apellido2) {
         this.apellido2 = apellido2;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }
