@@ -42,6 +42,13 @@
         <p class="mt-5 mb-3 text-muted">©Aplicaciones Web</p>
     </div>
 </main>
-
+<c:if test="${not empty operacion}">
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>${operacion}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    <% request.getSession().removeAttribute("operacion"); %>
+</c:if>
 <a href="productos">ver productos</a>
+
 <jsp:include page="templates/footer.jsp" />

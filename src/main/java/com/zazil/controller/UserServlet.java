@@ -28,7 +28,7 @@ public class UserServlet extends HttpServlet {
             //lógica de programación para un registro de usuario
             dao.insert(new User(0, email, pass, "cod"));
             //Aveces, no siempre, te mandan un email de bienvenida
-            /*SendEmail mail = new SendEmail();
+            SendEmail mail = new SendEmail();
             try {
                 mail.sendEmail(
                         "dericklagunes@utez.edu.mx",
@@ -41,7 +41,7 @@ public class UserServlet extends HttpServlet {
                                         toURI()));
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
-            }*/
+            }
         }else{
             //lógica de programación para un login
             User usr = (User) dao.findOne(email, pass);

@@ -39,7 +39,7 @@
                             <p class="card-text">${p.descript}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button href="producto?id=${p.id}" type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                                    <button href="producto?id=" type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Comprar</button>
                                 </div>
                                 <small class="text-muted">Producto de zazil</small>
